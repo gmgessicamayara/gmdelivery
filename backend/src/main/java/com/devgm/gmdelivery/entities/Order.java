@@ -55,6 +55,7 @@ public class Order implements Serializable{
 		this.status = status;
 	}
 
+	 
 	public Long getId() {
 		return id;
 	}
