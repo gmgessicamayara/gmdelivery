@@ -1,7 +1,13 @@
 package com.devgm.gmdelivery.DTO;
 
 import java.io.Serializable;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import com.devgm.gmdelivery.entities.Order;
+import com.devgm.gmdelivery.entities.OrderStatus;
 import com.devgm.gmdelivery.entities.Product;
 
 public class OrderDTO implements Serializable {
@@ -10,72 +16,118 @@ public class OrderDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
-	private String name;
-	private Double price;
-	private String description;
-	private String imageUri;
+	private String address;
+	private Double latitude;
+	private Double longitude;
+	private Double total;
+	private Instant moment;
+	private OrderStatus status;
+	
+	private List<ProductDTO> products = new ArrayList<>();
 	
 	public OrderDTO() {
 		
 	}
 
-	public OrderDTO(Long id, String name, Double price, String description, String imageUri) {
+	
+	public OrderDTO(Long id, String address, Double latitude, Double longitude, Double total, Instant moment,
+			OrderStatus status) {
 		super();
 		this.id = id;
-		this.name = name;
-		this.price = price;
-		this.description = description;
-		this.imageUri = imageUri;
+		this.address = address;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.total = total;
+		this.moment = moment;
+		this.status = status;
 	}
-	
-	public OrderDTO(Product entity) {
+
+	public OrderDTO(Order entity) {
 		super();
 		id = entity.getId();
-		name = entity.getName();
-		price = entity.getPrice();
-		description = entity.getDescription();
-		imageUri = entity.getImageUri();
+		address = entity.getAddress();
+		latitude = entity.getLatitude();
+		longitude = entity.getLongitude();
+		total = entity.getTotal();
+		moment = entity.getMoment();
+		status = entity.getStatus();
+		products = entity.getProducts().stream().map(x -> new ProductDTO(x)).collect(Collectors.toList());
 	}
+
 
 	public Long getId() {
 		return id;
 	}
 
+
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+
+	public String getAddress() {
+		return address;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public Double getPrice() {
-		return price;
+
+	public Double getLatitude() {
+		return latitude;
 	}
 
-	public void setPrice(Double price) {
-		this.price = price;
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
 	}
 
-	public String getDescription() {
-		return description;
+
+	public Double getLongitude() {
+		return longitude;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
 	}
 
-	public String getImageUri() {
-		return imageUri;
+
+	public Double getTotal() {
+		return total;
 	}
 
-	public void setImageUri(String imageUri) {
-		this.imageUri = imageUri;
+
+	public void setTotal(Double total) {
+		this.total = total;
 	}
-	
+
+
+	public Instant getMoment() {
+		return moment;
+	}
+
+
+	public void setMoment(Instant moment) {
+		this.moment = moment;
+	}
+
+
+	public OrderStatus getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(OrderStatus status) {
+		this.status = status;
+	}
+
+
+	public List<ProductDTO> getProducts() {
+		return products;
+	}
+
 	
 }
