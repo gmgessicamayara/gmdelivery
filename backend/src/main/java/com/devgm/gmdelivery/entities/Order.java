@@ -43,7 +43,7 @@ public class Order implements Serializable{
 	public Order() {
 		
 	}
-	public Order(Long id, String adress, Double latitude, Double longitude, Double total, Instant moment,
+	public Order(Long id, String address, Double latitude, Double longitude, Double total, Instant moment,
 			OrderStatus status) {
 		super();
 		this.id = id;
