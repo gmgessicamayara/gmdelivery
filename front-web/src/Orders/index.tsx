@@ -1,13 +1,12 @@
 import './styles.css';
-
-import { ReactComponent as Logo} from './logo.svg'
 import StepsHeader from './StepsHeader';
+import ProductList from './ProductList';
 
 function Orders() {
     return (
         <div className="orders-container">
             <StepsHeader/>
-
+            <ProductList/>
             
         </div>
        
